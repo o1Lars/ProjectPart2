@@ -22,12 +22,20 @@ lmoge23@student.sdu.dk
 import sys
 import DictBinTree
 
-tree = DictBinTree.DictBinTree(1)
-tree.root.left = DictBinTree.BinNode(0)
-tree.root.right = DictBinTree.BinNode(3)
+tree = DictBinTree.DictBinTree()
+tree.insert(1)
+tree.insert(2)
+tree.insert(0)
+tree.insert(-1)
+tree.insert(-2)
+tree.insert(30)
 
-print(tree.search(3))
-
+print(tree.root.key)
+print(tree.root.left.key)
+print(tree.root.right.key)
+print(tree.root.right.right.key)
+print(tree.root.left.left.key)
+print(tree.root.left.left.left.key)
 """
 n = 0
 for line in sys.stdin:
