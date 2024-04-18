@@ -47,7 +47,7 @@ class DictBinTree:
         k: int
             k is an integer value key
         """
-        if self.root == None:
+        if self.root is None:
             return False
         elif self._search(self.root, k):
             return True
