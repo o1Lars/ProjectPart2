@@ -27,14 +27,11 @@ lmoge23@student.sdu.dk
 class DictBinTree:
     """Constructs an unstructured binary search tree data structure intance."""
 
-    def __init__(self, root: int = None) -> None:
+    def __init__(self):
         """
-        Parameters
-        ----------
-        root: int, default = None
             represents the root node of the binary tree. If nothing is provided, root is None and tree is empty.
         """
-        self.root = BinNode(root)
+        self.root = None
 
         #for key in keys:
         #self.root = DictBinTree.insert(self.root, key)
@@ -55,7 +52,7 @@ class DictBinTree:
         else:
             return False
 
-    def insert(self, k: int) -> None:
+    def insert(self, input_key: int) -> None:
         """Creates and inserts a new node with key k into the binary search tree
 
         Parameters
@@ -63,22 +60,15 @@ class DictBinTree:
         k, int:
             An integer value
         """
-
-        # Create instance of subtree
-        z = BinNode(k)
-        z.left = BinNode()
-        z.right = BinNode()
-
-        self._insert(z)
+        self._insert(BinNode(input_key))
 
     def orderedTraversal(self) -> list[int]:
         """Returns a list of keys from the binary search tree in ascending order"""
 
-        keys_list = []
+        mylist=[]
+        self._orderedTraversal(self.root, mylist)
 
-        keys_list.append(self._orderedTraversal())
-
-        return keys_list
+        return mylist
 
     # private methods for the binary search tree
     def _search(self, x: BinNode, k: int) -> BinNode:
@@ -102,7 +92,7 @@ class DictBinTree:
         else:
             return self._search(x.right, k)
 
-    def _insert(self, z: BinNode) -> None:
+    def _insert(self, insert_binnode: BinNode) -> None:
         """Insert node z into binary search tree
 
         Parameters
@@ -110,43 +100,33 @@ class DictBinTree:
         z, BinNode:
             Node for which key is to be inserted into binary search tree
         """
+        y = None
+        x = self.root
 
-        x = self.root       # Node being compared with z
-        y = None            # y will be parent of z
-
-        while x.key is not None:        # descend until reaching a leaf
+        while x is not None:
             y = x
-            if z.key < x.key:
+            if insert_binnode.key < x.key:
                 x = x.left
             else:
                 x = x.right
         if y == None:
-            self.root = z
-        elif z.key < y.key:
-            y.left = z
+            self.root = insert_binnode
+        elif insert_binnode.key < y.key:
+            y.left = insert_binnode
         else:
-            y.right = z
+            y.right = insert_binnode
 
-    def _orderedTraversal(self):
+
+
+    def _orderedTraversal(self, node, mylist):
         """"""
-        if Node != None:
-            self.orderedTraversal(Node.left, mylist)
-            mylist.append(Node.key)
-            self.orderedTraversal(Node.right, mylist)
-            return mylist
-
-    #skal have følgende metodekald:
-    #T.search() som returnerer en boolean
-    #T.insert(), der indsætter nøglen K i træet T
-    # - Opretter ét nyt objekt af typen BinNode oprettes
-    #T.OrderedTraversal() returnerer en liste med nøglerne i træet T i sorteret orden (fremfor at printe dem på skærmen som i bogens kode)
-    # Vigtigt: Træet skal IKKE holdes balanceret (brug ikke metoder fra kapital 13)
-    #et objekt af denne skal indeholde BinNode
-    # dvs ét objekt af DictBinTree og dets rod svarer til T og T.root fra bogen.
-    # hvert træ består derfor af ét objekt (DictBinTree) og nul eller flere objekter af BinNodes. 
+        if node != None:
+            self._orderedTraversal(node.left, mylist)
+            mylist.append(node.key)
+            self._orderedTraversal(node.right, mylist)
 
 
-class BinNode:
+class   BinNode:
     """Creates a node/subtree with a key and the left and right child of the node"""
     def __init__(self, key: int=None):
         """
