@@ -22,20 +22,43 @@ lmoge23@student.sdu.dk
 import sys
 import DictBinTree
 
-tree = DictBinTree.DictBinTree()
-tree.insert(1)
-tree.insert(2)
-tree.insert(0)
-tree.insert(-1)
-tree.insert(-2)
-tree.insert(30)
 
-print(tree.root.key)
-print(tree.root.left.key)
-print(tree.root.right.key)
-print(tree.root.right.right.key)
-print(tree.root.left.left.key)
-print(tree.root.left.left.left.key)
+tree = DictBinTree.DictBinTree()
+numbers = []
+while True:
+    try:
+        myInput = input()
+        if myInput == "":
+            break
+        numbers.append(int(myInput))
+    except EOFError as e:
+        print(e)
+
+for num in numbers:
+    print(num)
+
+    #number = int(input())
+    #tree.insert(number)
+
+
+
+    
+print(tree.orderedTraversal)
+
+
+#create a loop for recieving user input
+#recieve user input
+# insert userinput into tree
+# print tree when finished
+
+
+# tree.insert(34)
+# tree.insert(645)
+# tree.insert(-45)
+# tree.insert(1)
+# tree.insert(34)
+# tree.insert(0)
+
 """
 n = 0
 for line in sys.stdin:
