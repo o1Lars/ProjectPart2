@@ -1,4 +1,5 @@
 from __future__ import annotations
+
 """
 This module provides DictBinTree, which is a class that constructs the data structure binary search tree with numbers as keys.
 The class provides:
@@ -24,6 +25,7 @@ lmoge23@student.sdu.dk
 
 """
 
+
 class DictBinTree:
     """Constructs an unstructured binary search tree data structure intance."""
 
@@ -45,7 +47,7 @@ class DictBinTree:
         k: int
             k is an integer value key
         """
-        if self.root.key == None:
+        if self.root == None:
             return False
         elif self._search(self.root, k):
             return True
@@ -65,10 +67,11 @@ class DictBinTree:
     def orderedTraversal(self) -> list[int]:
         """Returns a list of keys from the binary search tree in ascending order"""
 
-        mylist=[]
-        self._orderedTraversal(self.root, mylist)
+        keys_list = []
 
-        return mylist
+        self._orderedTraversal(self.root, keys_list)
+
+        return keys_list
 
     # private methods for the binary search tree
     def _search(self, x: BinNode, k: int) -> BinNode:
@@ -92,7 +95,7 @@ class DictBinTree:
         else:
             return self._search(x.right, k)
 
-    def _insert(self, insert_binnode: BinNode) -> None:
+    def _insert(self, z: BinNode) -> None:
         """Insert node z into binary search tree
 
         Parameters
@@ -105,30 +108,37 @@ class DictBinTree:
 
         while x is not None:
             y = x
-            if insert_binnode.key < x.key:
+            if z.key < x.key:
                 x = x.left
             else:
                 x = x.right
-        if y == None:
-            self.root = insert_binnode
-        elif insert_binnode.key < y.key:
-            y.left = insert_binnode
+        if y is None:
+            self.root = z
+        elif z.key < y.key:
+            y.left = z
         else:
-            y.right = insert_binnode
+            y.right = z
+
+    def _orderedTraversal(self, node, keys_list) -> None:
+        """Recursively populate list with keys from tree
+
+        Parameters
+        ----------
+        node
+            ?
+        keys_list
+            Empty list from public method to populate with node keys
+        """
+        if node is not None:
+            self._orderedTraversal(node.left, keys_list)
+            keys_list.append(node.key)
+            self._orderedTraversal(node.right, keys_list)
 
 
-
-    def _orderedTraversal(self, node, mylist):
-        """"""
-        if node != None:
-            self._orderedTraversal(node.left, mylist)
-            mylist.append(node.key)
-            self._orderedTraversal(node.right, mylist)
-
-
-class   BinNode:
+class BinNode:
     """Creates a node/subtree with a key and the left and right child of the node"""
-    def __init__(self, key: int=None):
+
+    def __init__(self, key: int = None):
         """
         Parameters
         ----------

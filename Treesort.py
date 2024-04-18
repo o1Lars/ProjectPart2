@@ -22,7 +22,10 @@ lmoge23@student.sdu.dk
 import sys
 import DictBinTree
 
+tree = DictBinTree.DictBinTree()
 
+
+"""
 tree = DictBinTree.DictBinTree()
 numbers = []
 while True:
@@ -36,7 +39,7 @@ while True:
 
 for num in numbers:
     print(num)
-
+"""
     #number = int(input())
     #tree.insert(number)
 
